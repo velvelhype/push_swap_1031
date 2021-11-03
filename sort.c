@@ -56,35 +56,51 @@ void    three_sort(t_list *dum)
 
     if(is_sorted(dum) != 1)
     {
-    if(one->value > two->value)
-    {
-        if(two->value > three->value)
+        if(one->value > two->value)
+        {
+            if(two->value > three->value)
+                {
+                    swap(one);
+                    r_rotate(dum);
+                }
+            else if (one->value < three->value)
+                swap(one);
+            else
+                rotate(dum);
+        }
+        else if (one->value < three->value)
             {
                 swap(one);
-                r_rotate(dum);
+                rotate(dum);
             }
-        else if (one->value < three->value)
-            swap(one);
         else
-            rotate(dum);
-    }
-    else if (one->value < three->value)
-        {
-            swap(one);
-            rotate(dum);
-        }
-    else
-        r_rotate(dum);
+            r_rotate(dum);
     }
 }
 
-void    finish_list(t_list  *list)
+void    finish_list(t_list  *a, t_list  *b, int lists_number)
 {
-    printf("lets finish\n");
-    t_list  *init = list->next;
+    // printf("lets finish\n");
+    t_list  *init = b->next;
     init->sort_status = SORTED;
-    if(count_list(list) == 2)
-        two_sort(list);
-    if(count_list(list) == 3)
-        three_sort(list);
+    if(count_list(b) == 2)
+        two_sort(b);
+    if(count_list(b) == 3)
+        three_sort(b);
+    lists_number = count_list(b);
+    while(lists_number--)
+    {
+        push(b,a);
+        rotate(a);
+    }
+    if((a->next)->sort_status != SORTED)
+    {
+        push(a,b);
+        while((a->next)->sort_status == UNKNOWN)
+            push(a,b);
+        // printf("go next rec\n");
+        // stack_check(a,b);
+        // read(1,NULL,1);
+        sort_rec_b(a,b);
+    }
 }

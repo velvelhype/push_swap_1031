@@ -86,8 +86,9 @@ void    push(t_list *a_dummy, t_list *b_dummy)
     t_list *b1 = b_dummy->next;
     t_list *b2 = b1->next;
 
-    cut (a_dummy, a2);
-    insert  (b_dummy, a1, b1);
+    cut(a_dummy, a2);
+    insert(b_dummy, a1, b1);
+    //write(1,"p\n",2);
 }
 
 void    rotate(t_list *dum)
@@ -121,6 +122,7 @@ void    rotate(t_list *dum)
     
         cur = cur->prev;
     }
+    //write(1,"r\n",2);
 }
 
 void   r_rotate(t_list *dum)
@@ -151,4 +153,5 @@ void   r_rotate(t_list *dum)
         save_status = init_status;    
         cur = cur->next;
     }
+    //write(1,"rr\n",3);
 }

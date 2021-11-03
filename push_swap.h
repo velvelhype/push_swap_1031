@@ -19,6 +19,10 @@ typedef	struct	t_list
 	struct t_list	*prev;
 }   t_list;
 
+void    write_error();
+
+void    pre_process(int argc, char **argv);
+
 void    create(t_list *head, t_list *dummy, int val);
 void    b_dummy_set(t_list  *dummy);
 void    append(t_list *list, t_list *dummy, int val);
@@ -38,8 +42,8 @@ void    stack_check(t_list *a_dummy, t_list *b_dummy);
 void 	illegal_stack_check(t_list *a_dummy);
 int     count_list(t_list *list);
 
-
-void    finish_list(t_list  *list);
+void    sort_rec_b(t_list *a, t_list *b);
+void    finish_list(t_list  *a, t_list  *b, int lists_number);
 
 void    recursive_sort(t_list *a_dum, t_list *b_dum);
 void    first_sort(t_list *a_dum, t_list *b_dum);

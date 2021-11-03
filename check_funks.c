@@ -72,16 +72,3 @@ void illegal_stack_check(t_list *a_dummy)
         a_dummy = a_dummy->next;
     }
 }
-
-int count_list(t_list *list)
-{
-    int count = 0;
-
-    list = list->next;
-    while(list->is_dummy == FALSE)
-    {
-        count++;
-        list = list->next;
-    }
-    return(count);
-}
