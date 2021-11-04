@@ -57,18 +57,36 @@ void    value_type_check(char **argv, int c)
 void    pre_process(int argc, char **argv)
 {
     int a = 10;
-    printf("==============\n");
     if(argc < 2)
         write_error();
+    if(argc == 2)
+        exit(0);
     int c = 1;
     while(*(argv + c))
     {
         digit_check(argv, c);
         value_type_check(argv, c);
-        printf("%ld\n", custom_atoi(*(argv + c)));
-        //read(1,NULL,1);
         c++;
     }
-    printf("==============\n");
     
+}
+
+void    check_duplicates(t_list *list)
+{
+    // printf("c_p\n");
+    //illegal_stack_check(list);
+    list = list->next;
+    t_list  *cur_list = list->next;
+
+    while(list->is_dummy == FALSE)
+    {
+        while(cur_list->is_dummy == FALSE)
+        {
+            if(list->value == cur_list->value)
+                write_error();
+            cur_list = cur_list->next;
+        }
+        list = list->next;
+        cur_list = list->next;
+    }
 }

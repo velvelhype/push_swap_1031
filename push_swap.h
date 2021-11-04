@@ -21,6 +21,8 @@ typedef	struct	t_list
 
 void    write_error();
 
+void    check_duplicates(t_list *list);
+
 void    pre_process(int argc, char **argv);
 
 void    create(t_list *head, t_list *dummy, int val);

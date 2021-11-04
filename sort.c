@@ -81,12 +81,14 @@ void    three_sort(t_list *dum)
 void    finish_list(t_list  *a, t_list  *b, int lists_number)
 {
     // printf("lets finish\n");
+    // stack_check(a,b);
     t_list  *init = b->next;
-    init->sort_status = SORTED;
+    // init->sort_status = SORTED;
     if(count_list(b) == 2)
         two_sort(b);
     if(count_list(b) == 3)
         three_sort(b);
+    init->sort_status = SORTED;
     lists_number = count_list(b);
     while(lists_number--)
     {

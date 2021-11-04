@@ -64,9 +64,11 @@ void    sort_rec_b(t_list *a, t_list *b)
     int     lists_number = count_list(b);
     int     pivot = lists_number / 2 + find_min(b);
     // printf("pivot is %d\n", pivot);
-
     t_list  *cur;
     int     loop_count = 0;
+
+    // printf("ini\n");
+    // stack_check(a,b);
 
     while(1)
     {
@@ -83,9 +85,13 @@ void    sort_rec_b(t_list *a, t_list *b)
         if(loop_count == lists_number)
         {
             if(count_list(b) > 3)
+            {
+                // printf("pre rec\n");
+                // stack_check(a, b);
                 sort_rec_b(a, b);
+            }
             else
-                finish_list(a, b, lists_number);
+                finish_list(a, b, lists_number);            
             break;
         }
     }    
@@ -98,12 +104,13 @@ void    init_stacks(t_list *a, t_list *b)
     int     pivot = lists_number / 2 + min_value;
     t_list  *cur;
     int     loop_count = 0;
-
+    
     while(1)
     {
         cur = a->next;
         if(cur->value < pivot)
         {
+            // printf("just pushed %d\n", cur->value);
             push(a,b);
             cur = a->next;
         }
@@ -113,6 +120,7 @@ void    init_stacks(t_list *a, t_list *b)
         if(loop_count == lists_number)
         {
             // printf("Enter to rec\n");
+            // stack_check(a,b);
             (a->next)->sort_status = CHUNK;
             sort_rec_b(a, b);
             break;
@@ -127,8 +135,7 @@ int     main(int argc, char **argv)
     t_list  *a_stack = malloc(sizeof(t_list));
     int c = 1;
 
-    printf("argc is %d\n", argc);
-
+    //printf("argc is %d\n", argc);
     pre_process(argc, argv);
     while(*(argv + c))
     {
@@ -143,12 +150,16 @@ int     main(int argc, char **argv)
     }
     set_sort_status(a_dummy, b_dummy);
 
+    check_duplicates(a_dummy);
+
+    // printf("after dup check\n");
+
     init_stacks(a_dummy, b_dummy);
 
-    printf("Sort end\n");
-    stack_check(a_dummy, b_dummy);
+    // printf("Sort end\n");
+    // stack_check(a_dummy, b_dummy);
+    // illegal_stack_check(a_dummy);
 }
-
     // struct timespec begin, end;
     // clock_gettime(CLOCK_REALTIME, &begin);
 
