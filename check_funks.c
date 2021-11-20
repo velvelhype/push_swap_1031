@@ -41,9 +41,9 @@ void    stack_check(t_list *a_dummy, t_list *b_dummy)
     int b_end = FALSE;
     while(a_dummy->is_dummy == FALSE || b_dummy == FALSE)
     {
-        if(a_dummy->is_dummy == TRUE)
+        if(a_dummy->is_dummy != FALSE)
             a_end = TRUE;
-        if(b_dummy->is_dummy == TRUE)
+        if(b_dummy->is_dummy != FALSE)
             b_end = TRUE;
         if(a_end == FALSE)
         {

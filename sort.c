@@ -92,7 +92,7 @@ void    finish_list(t_list  *a, t_list  *b, int lists_number)
     lists_number = count_list(b);
     while(lists_number--)
     {
-        push(b,a);
+        pa(a,b);
         rotate(a);
     }
     if((a->next)->sort_status != SORTED)

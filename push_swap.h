@@ -9,6 +9,8 @@
 #define SORTED 1
 #define CHUNK 0
 #define UNKNOWN 2
+#define TRUE_A 3
+#define TRUE_B 4
 
 typedef	struct	t_list
 {
@@ -27,7 +29,7 @@ void    pre_process(int argc, char **argv);
 
 void    create(t_list *head, t_list *dummy, int val);
 void    b_dummy_set(t_list  *dummy);
-void    append(t_list *list, t_list *dummy, int val);
+void    append(t_list *dummy, int val);
 void    set_sort_status(t_list *a_dummy, t_list *b_dummy);
 void    cut(t_list *a, t_list *c);
 void    insert(t_list *a, t_list *b, t_list *c);
@@ -35,6 +37,15 @@ void    push(t_list *a_dummy, t_list *b_dummy);
 void    swap(t_list *list);
 void    rotate(t_list *dum);
 void    r_rotate(t_list *dum);
+
+void    sa(t_list *a_stack);
+void    sb(t_list *b_stack);
+void    pa(t_list *a_stack, t_list *b_stack);
+void    pb(t_list *a_stack, t_list *b_stack);
+void    ra(t_list *a_stack);
+void    rb(t_list *b_stack);
+void    rra(t_list *a_stack);
+void    rrb(t_list *b_stack);
 
 int     is_sorted(t_list *a);
 void	baka_sort(t_list *a_dummy);

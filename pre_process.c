@@ -56,7 +56,6 @@ void    value_type_check(char **argv, int c)
 
 void    pre_process(int argc, char **argv)
 {
-    int a = 10;
     if(argc < 2)
         write_error();
     if(argc == 2)

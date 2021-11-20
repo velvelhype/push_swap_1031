@@ -4,7 +4,7 @@ int     length_to_start(t_list *list)
 {
     int i = 0;
 
-    while(list->is_dummy != TRUE)
+    while(list->is_dummy == FALSE)
     {
         list = list->prev;
         i++;
@@ -75,19 +75,18 @@ void    sort_rec_b(t_list *a, t_list *b)
         cur = b->next;
         if(cur->value > pivot)
         {
-            push(b,a);
+            // push(b,a);
+            pa(a,b);
             cur = b->next;
         }
         else
-            rotate(b);
+            rb(b);
         loop_count++;
 
         if(loop_count == lists_number)
         {
             if(count_list(b) > 3)
             {
-                // printf("pre rec\n");
-                // stack_check(a, b);
                 sort_rec_b(a, b);
             }
             else
@@ -111,11 +110,11 @@ void    init_stacks(t_list *a, t_list *b)
         if(cur->value < pivot)
         {
             // printf("just pushed %d\n", cur->value);
-            push(a,b);
+            pb(a,b);
             cur = a->next;
         }
         else
-            rotate(a);
+            ra(a);
         loop_count++;
         if(loop_count == lists_number)
         {
@@ -145,20 +144,20 @@ int     main(int argc, char **argv)
             b_dummy_set(b_dummy);
         }
         else
-            append(a_stack, a_dummy, ft_atoi(*(argv + c)));
+            append(a_dummy, ft_atoi(*(argv + c)));
         c++;
     }
     set_sort_status(a_dummy, b_dummy);
 
     check_duplicates(a_dummy);
 
-    // printf("after dup check\n");
+    // ("after dup check\n");
 
     init_stacks(a_dummy, b_dummy);
 
-    // printf("Sort end\n");
+    printf("Sort end\n");
     // stack_check(a_dummy, b_dummy);
-    // illegal_stack_check(a_dummy);
+    illegal_stack_check(a_dummy);
 }
     // struct timespec begin, end;
     // clock_gettime(CLOCK_REALTIME, &begin);
